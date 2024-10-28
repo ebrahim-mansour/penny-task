@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as AuthActions from '../../state/auth/auth.actions';
@@ -16,11 +15,7 @@ export class HomeComponent implements OnInit {
 
   username$: Observable<string | null>;
 
-  constructor(
-    private http: HttpClient,
-    private store: Store,
-    private router: Router
-  ) {
+  constructor(private http: HttpClient, private store: Store) {
     this.username$ = this.store.select(selectUsername);
   }
 
