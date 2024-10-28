@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+}
+
+mat-card {
+  padding: 2rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-width: 450px;
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+
+  input {
+    padding: 0.2rem;
+    &::placeholder {
+      color: #9e9e9e;
+      padding-left: 0.3rem;
+    }
+
+    &:focus::placeholder {
+      color: transparent;
+    }
+  }
+}

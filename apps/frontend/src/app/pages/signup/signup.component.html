@@ -1,0 +1,42 @@
+<div class="form-container">
+    <mat-card>
+        <h2>Sign Up</h2>
+        <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First Name" formControlName="firstName" />
+                <mat-error *ngIf="signupForm.get('firstName')?.hasError('required')">
+                    First name is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Last Name" formControlName="lastName" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" />
+                <mat-error *ngIf="signupForm.get('email')?.hasError('required')">
+                    Email is required
+                </mat-error>
+                <mat-error *ngIf="signupForm.get('email')?.hasError('pattern')">
+                    {{'Enter a valid email address (e.g., user@example.com)'}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" />
+                <mat-error *ngIf="signupForm.get('password')?.hasError('required')">
+                    Password is required
+                </mat-error>
+                <mat-error *ngIf="signupForm.get('password')?.hasError('strongPassword')">
+                    Password must be at least 8 characters, include uppercase, lowercase, a number, and a special
+                    character.
+                </mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" [disabled]="signupForm.invalid" type="submit">Sign Up</button>
+            <button mat-button color="accent" routerLink="/login">Already have an account? Login</button>
+        </form>
+    </mat-card>
+</div>
