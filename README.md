@@ -1,9 +1,24 @@
+## .env
+#### you should add .env file in the backend directory containing the following keys
+- FRONTEND_URL=http://localhost:4200
+
+- MONGODB_URI=
+
+- JWT_SECRET=
+- JWT_EXPIRATION=
+
 ## Run tasks
 
-To run the dev server for your app, use:
+To run the backend:
 
 ```sh
 npx nx serve backend
+```
+
+To run the frontend:
+
+```sh
+npx nx serve frontend
 ```
 
 ## Procedure I used to create the project
