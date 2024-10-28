@@ -39,7 +39,7 @@ export class LoginComponent {
           const username =
             response.body.firstName +
             (response.body.lastName ? ' ' + response.body.lastName : '');
-          this.store.dispatch(AuthActions.loginSuccess({ username }));
+          this.store.dispatch(AuthActions.loginSuccess({ username, expirationTime: 8 * 60 * 60 * 1000 }));
           this.router.navigate(['/home']);
         }
       },

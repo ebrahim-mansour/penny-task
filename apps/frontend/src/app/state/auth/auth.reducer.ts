@@ -1,14 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import * as AuthActions from './auth.actions';
-
-export interface AuthState {
-  isLoggedIn: boolean;
-  username: string | null;
-}
+import { AuthState } from './auth.state.model';
 
 export const initialState: AuthState = {
   isLoggedIn: false,
   username: null,
+  tokenExpirationDate: null,
 };
 
 export const authReducer = createReducer(
@@ -18,5 +15,13 @@ export const authReducer = createReducer(
     isLoggedIn: true,
     username,
   })),
-  on(AuthActions.logout, () => initialState)
+  on(AuthActions.logout, (state) => ({
+    ...state,
+    username: null,
+    tokenExpirationDate: null,
+  })),
+  on(AuthActions.setTokenExpiration, (state, { expirationDate }) => ({
+    ...state,
+    tokenExpirationDate: expirationDate,
+  }))
 );

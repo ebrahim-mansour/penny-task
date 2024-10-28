@@ -1,6 +1,7 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
-import { AuthState, authReducer } from './auth/auth.reducer';
+import { authReducer } from './auth/auth.reducer';
+import { AuthState } from './auth/auth.state.model';
 
 export interface AppState {
   auth: AuthState;

@@ -25,21 +25,19 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('home component');
-    // this.http
-    //   .get(`${this.apiUrl}/products`, { withCredentials: true })
-    //   .subscribe(
-    //     (response) => {
-    //       console.log(response);
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     }
-    //   );
+    this.http
+      .get(`${this.apiUrl}/products`, { withCredentials: true })
+      .subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   logout() {
     this.store.dispatch(AuthActions.logout());
-    this.router.navigate(['/login']);
   }
 }
