@@ -17,6 +17,9 @@ export class AuthService {
   }
 
   login(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/login`, data);
+    return this.http.post(`${this.apiUrl}/auth/login`, data, {
+      withCredentials: true,
+      observe: 'response',
+    });
   }
 }

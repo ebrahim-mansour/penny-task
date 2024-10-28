@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { AuthService } from '../../auth.service';
 import { strongPasswordValidator } from '../../custom-validators/strong-password';
+import * as AuthActions from '../../state/auth/auth.actions';
 import { emailPattern } from '../../utils/constants';
 
 @Component({
@@ -18,6 +20,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     private snackBar: MatSnackBar,
+    private store: Store,
     private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
@@ -32,7 +35,13 @@ export class LoginComponent {
   onLogin() {
     this.authService.login(this.loginForm.value).subscribe(
       (response) => {
-        this.router.navigate(['/home']);
+        if (response.status === 200) {
+          const username =
+            response.body.firstName +
+            (response.body.lastName ? ' ' + response.body.lastName : '');
+          this.store.dispatch(AuthActions.loginSuccess({ username }));
+          this.router.navigate(['/home']);
+        }
       },
       (error) => {
         if (error.status === 401) {

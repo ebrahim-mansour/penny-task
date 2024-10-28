@@ -6,7 +6,7 @@ import { AuthModule } from './auth.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthModule);
-  app.enableCors({ origin: process.env.FRONTEND_URL });
+  app.enableCors({ origin: process.env.FRONTEND_URL, credentials: true });
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   const globalPrefix = 'api';
